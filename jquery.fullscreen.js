@@ -1,26 +1,32 @@
-(function($) {
+(function($, documentElement, height, width) {
 	
-	var isFullScreen = function() {
-		return document.documentElement.clientHeight == screen.height && document.documentElement.clientWidth == screen.width;
-	};
-	
-	$(window).data('fullscreen-state', isFullScreen());
-	
-	$(window).resize(function() {
-		var fullscreenState = isFullScreen();
-		
-		if ($(window).data('fullscreen-state') && !fullscreenState) {
-			$(window).data('fullscreen-state', fullscreenState);
-			$(window).trigger('fullscreen-toggle', [false]);
-			$(window).trigger('fullscreen-off');
+	var 
+		isFullScreen = function() {
+			return documentElement.clientHeight == height && documentElement.clientWidth == width;
 		}
-		else if (!$(window).data('fullscreen-state') && fullscreenState) {
-			$(window).data('fullscreen-state', fullscreenState);
-			$(window).trigger('fullscreen-toggle', [true]);
-			$(window).trigger('fullscreen-on');
-		}
-		else {
-		}
-	});
+		,$window = $(window)
+	;
 	
-})(jQuery);
+	$window
+		.data('fullscreen-state', isFullScreen())
+		.resize(function() {
+			var fullscreenState = isFullScreen();
+			
+			if ($window.data('fullscreen-state') && !fullscreenState) {
+				$window
+					.data('fullscreen-state', fullscreenState)
+					.trigger('fullscreen-toggle', [false])
+					.trigger('fullscreen-off')
+				;
+			}
+			else if (!$window.data('fullscreen-state') && fullscreenState) {
+				$window
+					.data('fullscreen-state', fullscreenState)
+					.trigger('fullscreen-toggle', [true])
+					.trigger('fullscreen-on')
+				;
+			}
+		})
+	;
+
+})(jQuery, document.documentElement, screen.height, screen.width);
