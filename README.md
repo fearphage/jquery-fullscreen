@@ -23,9 +23,14 @@ The following events are provided:
 * `fullscreen-on` is triggered when the browser enters fullscreen;
 * `fullscreen-off` is triggered when the browser exits fullscreen.
 
+If you need to check the current fullscreen state, grab the `fullscreen-state` data property from the `window` object, as follows:
+
+	var isFullScreen = $(window).data('fullscreen-state');
+
+
 The `example.html` document details examples for all events.
 
 # Caveats
 
 * There is no cross-browser way to programmatically trigger the fullscreen state.
-* This has only been tested in Google Chrome. Support for more browsers is coming soon.
+* This has only been tested in Google Chrome and Firefox. Support for more browsers is coming soon.

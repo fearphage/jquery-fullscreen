@@ -1,8 +1,11 @@
-(function($, documentElement, height, width) {
+(function($, window, documentElement, height, width) {
 	
 	var 
 		isFullScreen = function() {
-			return documentElement.clientHeight == height && documentElement.clientWidth == width;
+			return (documentElement.clientHeight == height && documentElement.clientWidth == width) ||
+				window.fullScreen ||
+				(window.outerHeight == height && window.outerWidth == width)
+			;
 		}
 		,$window = $(window)
 	;
@@ -29,4 +32,4 @@
 		})
 	;
 
-})(jQuery, document.documentElement, screen.height, screen.width);
+})(jQuery, this, document.documentElement, screen.height, screen.width);
