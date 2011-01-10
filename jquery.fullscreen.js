@@ -2,6 +2,7 @@
 	
 	var isFullScreen = function() {
 		return (document.documentElement.clientHeight == screen.height && document.documentElement.clientWidth == screen.width) ||
+			(window.fullScreen) ||
 			(window.outerWidth == screen.width && window.outerHeight == screen.height);
 	};
 	
