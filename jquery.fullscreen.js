@@ -1,7 +1,8 @@
 (function($) {
 	
 	var isFullScreen = function() {
-		return document.documentElement.clientHeight == screen.height && document.documentElement.clientWidth == screen.width;
+		return (document.documentElement.clientHeight == screen.height && document.documentElement.clientWidth == screen.width) ||
+			(window.outerWidth == screen.width && window.outerHeight == screen.height);
 	};
 	
 	$(window).data('fullscreen-state', isFullScreen());
